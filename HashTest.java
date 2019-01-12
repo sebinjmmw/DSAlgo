@@ -37,9 +37,11 @@ public class HashTest {
 
         for(int i : countHash.keySet()) {
             int j = target - i;
-            if( countHash.containsKey(j) && countHash.get(j) > 0) {
-                System.out.format("%s : %s %n", j, i);
-                countHash.put(i,0);                       // null the complement element to prevent duplicates
+            if(countHash.containsKey(j) && countHash.get(j)>0){
+                if(!(i==j && countHash.get(j)==1)) {                 //prevent cases of (target/2, target/2) when present only once
+                    System.out.format("%s : %s %n", j, i);
+                }
+                countHash.put(i,0);                      // null the complement element to prevent duplicates
             }
         }
     }
